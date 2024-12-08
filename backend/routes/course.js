@@ -80,6 +80,12 @@ router.post('/:id/enroll', verifyToken, async (req, res) => {
     if (course.students.includes(req.user.id))
       return res.status(400).json({ error: 'You are already enrolled in this course' });
 
+    if (course.price <= 0) { 
+      course.students.push(req.user.id);
+      await course.save();
+      res.json({ message: 'Enrolled successfully' });
+    }
+
     const orderToken = req.body.orderToken;
     if (!orderToken) return res.status(400).json({ error: 'Order token is required' });
 
