@@ -21,7 +21,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(_dirname, 'dist', 'index.html'));
 })
 
-mongoose.connect(process.env.MONGODB_URL)
+mongoose.connect(process.env.MONGODB_URL, {
+  connectTimeoutMS: 30000,
+  serverSelectionTimeoutMS: 30000,
+})
   .then(console.log('Connected to MongoDB'))
   .catch((error) => console.log(error));
 

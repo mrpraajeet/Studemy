@@ -31,14 +31,27 @@ const CourseTable = ({ courses, role, onEnroll, onUpload, onDelete }) => {
   }));
 
   const columns = [
-    { field: 'sNo', headerName: 'S.No', width: 70 },
+    { 
+      field: 'sNo', 
+      headerName: 'S.No', 
+      width: 70,
+      renderCell: (params) => (
+        <div style={{ padding: '8px'}}>
+          {params.value}
+        </div>
+      ),
+    },
     {
       field: 'title',
       headerName: 'Title',
       flex: 1,
       minWidth: 150,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>
+        <div style={{ 
+          whiteSpace: 'normal', 
+          wordWrap: 'normal', 
+          padding: '8px',
+        }}>
           {params.value}
         </div>
       ),
@@ -49,7 +62,11 @@ const CourseTable = ({ courses, role, onEnroll, onUpload, onDelete }) => {
       flex: 1.5,
       minWidth: 200,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>
+        <div style={{
+          whiteSpace: 'normal', 
+          wordWrap: 'normal', 
+          padding: '8px',
+        }}>
           {params.value}
         </div>
       ),
@@ -60,20 +77,50 @@ const CourseTable = ({ courses, role, onEnroll, onUpload, onDelete }) => {
       flex: 1,
       minWidth: 150,
       renderCell: (params) => (
-        <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', wordBreak: 'break-word' }}>
+        <div style={{ 
+          whiteSpace: 'normal', 
+          wordWrap: 'normal',
+          padding: '8px',
+        }}>
           {params.value}
         </div>
       ),
     },
-    { field: 'enrolled', headerName: 'Enrollments', flex: 1, minWidth: 100 },
-    { field: 'price', headerName: 'Price (in ₹)', flex: 1, minWidth: 100 },
+    { 
+      field: 'enrolled', 
+      headerName: 'Enrollments', 
+      flex: 1, 
+      minWidth: 100, 
+      renderCell: (params) => (
+        <div style={{ padding: '8px' }}>
+          {params.value}
+        </div>
+      ),
+    },
+    { 
+      field: 'price', 
+      headerName: 'Price (in ₹)', 
+      flex: 1, 
+      minWidth: 100, 
+      renderCell: (params) => (
+        <div style={{ padding: '8px' }}>
+          {params.value}
+        </div>
+      ),
+    },
     {
       field: 'actions',
       headerName: 'Actions',
       width: 200,
       sortable: false,
       renderCell: (params) => (
-        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', alignItems: 'center', padding: '8px' }}>
+        <div style={{ 
+          display: 'flex', 
+          gap: '8px', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          padding: '8px'
+        }}>
           {role === 'student' && (
             <div>
               <Button

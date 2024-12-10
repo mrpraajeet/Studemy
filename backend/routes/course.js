@@ -83,7 +83,7 @@ router.post('/:id/enroll', verifyToken, async (req, res) => {
     if (course.price <= 0) { 
       course.students.push(req.user.id);
       await course.save();
-      res.json({ message: 'Enrolled successfully' });
+      return res.json({ message: 'Enrolled successfully' });
     }
 
     const orderToken = req.body.orderToken;
