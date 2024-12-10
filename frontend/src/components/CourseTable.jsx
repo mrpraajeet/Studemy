@@ -27,7 +27,8 @@ const CourseTable = ({ courses, role, onEnroll, onUpload, onDelete }) => {
     description: course.description,
     instructor: course.instructor?.name || 'Unknown',
     price: course.price,
-    enrolled: course.students.length
+    enrolled: course.students.length,
+    students: course.students
   }));
 
   const columns = [
@@ -123,14 +124,16 @@ const CourseTable = ({ courses, role, onEnroll, onUpload, onDelete }) => {
         }}>
           {role === 'student' && (
             <div>
-              <Button
-                style={{ marginRight: '8px' }}
-                variant="outlined"
-                size="small"
-                onClick={() => onEnroll(params.row.id, params.row.price)}
-              >
-                Enroll
-              </Button>
+              {!params.row.students.includes(sessionStorage.getItem('id')) && (
+                <Button
+                  style={{ marginRight: '8px' }}
+                  variant="outlined"
+                  size="small"
+                  onClick={() => onEnroll(params.row.id, params.row.price)}
+                >
+                  Enroll
+                </Button>
+              )}
               <Button
                 variant="outlined"
                 size="small"
