@@ -35,8 +35,10 @@ const CoursesPage = () => {
     let revenue = 0;
 
     courses.forEach(course => {
-      enrollments += course.students.length;
-      revenue += course.students.length * course.price * 0.9;
+      if(course.instructor._id === sessionStorage.getItem('id')) {
+        enrollments += course.students.length;
+        revenue += course.students.length * course.price * 0.9;
+      }
     });
 
     setTotalEnrollments(enrollments);
